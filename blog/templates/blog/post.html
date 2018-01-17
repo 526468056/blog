@@ -1,0 +1,65 @@
+{%extends 'blog/base.html'%}
+{%load staticfiles%}
+{%load blog_tags%}
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+{%block title%}
+<header class="intro-header" style="background-image: url({%static  'blog/img/bj1.jpg'%})">
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        {%get_tag post.id as tag_list%}
+                        {%for tag in tag_list %}
+
+                        
+
+                        <a class="tag" href="{%url 'blog:tag_post' tag.id%}" >{{tag.name}}</a>
+                        {%endfor%}
+                    </div>
+                    <h1 id="pwa">{{post.title}}</h1>
+                    
+                    
+                    <h2 class="subheading" id="upgrading-eleme-to-progressive-web-app">{{post.excerpt}}</h2>
+                    
+                    <span class="meta">Posted by {{post.author}} on {{post.create_time}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{%endblock%}
+<!-- Post Content -->
+{%block body%}
+<article>
+    <div class="container">
+        <div class="row" style="margin: 0 auto;width:75%">
+
+    <!-- Post Container -->
+         
+                <!-- Chinese Version -->
+
+    {{post.body|safe}}
+
+</div>
+</div>
+</div>
+</article>
+{%endblock%}
