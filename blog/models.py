@@ -1,13 +1,15 @@
+# -*- coding:utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 # Create your models here.
-# -*- coding:utf-8 -*-
-import sys
-default_encoding = 'utf-8'
-if sys.getdefaultencoding() != default_encoding:
-    reload(sys)
-    sys.setdefaultencoding(default_encoding)
+
+import sys  
+  
+default_encoding = 'utf-8'  
+if sys.getdefaultencoding() != default_encoding:  
+    reload(sys)  
+    sys.setdefaultencoding(default_encoding)  
 
 class Tag(models.Model):
 	'''
@@ -15,7 +17,7 @@ class Tag(models.Model):
 	'''
 	name= models.CharField(max_length=100)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.name
 
 class Post(models.Model):
@@ -37,7 +39,7 @@ class Post(models.Model):
 	
 	tags=models.ManyToManyField(Tag,blank=True)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.title
 
 
