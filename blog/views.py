@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from django.views import generic
-from .models import Post,Tag
+from .models import Post,Tag,Category
 import markdown
 from django.shortcuts import get_object_or_404 
 from django.core.mail import send_mail
@@ -43,6 +43,17 @@ class TagView(generic.ListView):
 
 		return tag.post_set.all()
 
+class CategoryView(generic.ListView):
+	model=Post
+	template_name='blog/index.html'
+	context_object_name='Post'
+
+	def get_queryset(self):
+		category=get_object_or_404(Category,pk=self.kwargs.get('pk'))
+
+
+
+		return category.post_set.all()
 
 def about(request):
 	tem=loader.get_template('blog/about.html')

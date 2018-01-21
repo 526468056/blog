@@ -3,8 +3,13 @@
 {%load blog_tags%}
 {%block title%}
 
+<style>
+.col :hover{
+    background:MediumAquaMarine 
+}
+</style>
 <header class="intro-header" style="background-image: url({%static 'blog/img/bj2.jpg'%})">
-    <div class="container">
+    <div class="container" style='height: 520px'>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
@@ -39,11 +44,11 @@
         </h3>
         
         <div class="post-content-preview">
-            {{post.body|slice:":2"}}
+            {{post.body|slice:":150"}}...
         </div>
     </a>
     <p class="post-meta">
-        Posted by {{post.author}} on {{post.create_time}}
+        Posted by {{post.author}} on {{post.create_time|date:"n j, Y"}}
     </p>
 </div>
 <hr>
@@ -71,26 +76,48 @@
                 col-md-3 col-md-offset-0
                 col-sm-12
                 col-xs-12
-                sidebar-container
+                
             ">
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
-                    <h5>TAGS</a></h5>
+                    <h5 class='sidebar-container'>TAGS</a></h5>
 
                     <div class="tags">
                     {%get_tags as tags_list%}
+                    
                     {%for tag in tags_list%}
+                    {%get_color as color%}
+                    
                         
                             
-                                <a href="{% url 'blog:tag_post' tag.id%}" title="" rel="5">
+                                <a href="{% url 'blog:tag_post' tag.id%}" title="" rel="5" style="background-color:{{color}}">
                                     {{tag.name}}
                                 </a>
+                    
                             
                     {%endfor%}
                         
                     </div>
+                    
+                </section >
+
+                <section style = 'margin-top : 2cm'>  
+                    <hr class="hidden-sm hidden-xs">
+                    <h5 class='sidebar-container'>CATEGORYS</a></h5>
+                    <table border="1" frame=below style='table-layout:fixed;word-wrap:break-word;word-break;break-all' >
+
+                    {%get_categorys as categorys_list%}
+                    {%for category in categorys_list%}    
+                            <tr class=col onclick="window.location.href=('{% url 'blog:category_post' category.id%}');" style='cursor: pointer;' >                            
+                                <td >
+                                    {{category.name }} <span style="font-size: 90%">({{category.post_set.count}})</span>
+                                </td>
+                            </tr>                  
+                        {%endfor%}
+                    </table >
+                    
                     
                 </section>
             </div>
