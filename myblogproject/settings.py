@@ -136,9 +136,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 465
 #发送邮件的邮箱
-EMAIL_HOST_USER = '18711045036@163.com'
+EMAIL_HOST_USER = ''
 #在邮箱中设置的客户端授权密码
-EMAIL_HOST_PASSWORD = 'xlh1109'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = '18711045036@163.com'
+DEFAULT_FROM_EMAIL = ''
